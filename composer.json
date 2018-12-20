@@ -10,7 +10,9 @@
         }
     ],
     "keywords" : [
-        "zf2, gearman, queue manager"
+        "zf2", 
+        "gearman", 
+        "queue manager"
     ],
     "homepage" : "https://github.com/VadimIzmalkov/zf2gearman",
     "require": {
