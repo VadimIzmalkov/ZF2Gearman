@@ -1,0 +1,27 @@
+{
+    "name": "vadimizmalkov/zf2gearman",
+    "description": "Basic integration of ZF2 and queue manager Gearman",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Vadim Izmalkov",
+            "email": "399115@gmail.com"
+        }
+    ],
+    "keywords" : [
+        "zf2, gearman, queue manager"
+    ],
+    "homepage" : "https://github.com/VadimIzmalkov/zf2gearman",
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload" : {
+        "psr-0" : {
+            "zf2gearman" : "src"
+        },
+        "classmap" : [
+            "./Module.php"
+        ]
+    }
+}
