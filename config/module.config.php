@@ -9,25 +9,24 @@ return [
                 // */50 * * * * php /var/www/html/fryday/public/index.php add-job <jobtype> <ip> 0 0
 
                 // run CLI command to start separate process
-                'add-job' => [
+                'add-task' => [
                     'options' => [
-                        'route' => 'add-job <jobid> <createownworker>',
+                        'route' => 'add-task <workloadid> <force>',
                         'defaults' => [
                             '__NAMESPACE__' => 'Zf2Gearman\Controller',
-                            'controller'    => 'index',
+                            'controller'    => 'gearman',
                             'action'        => 'add-job',
                         ],
                     ]
                 ],
 
-                // run worker in separate process
-                'add-background-job-console' => [
+                'run-worker-console' => [
                     'options' => [
-                        'route' => 'add-background-job-console <jobid> <createownworker>',
+                        'route' => 'run-worker-console <workloadid> <force>',
                         'defaults' => [
                             '__NAMESPACE__' => 'Zf2Gearman\Controller',
-                            'controller'    => 'index',
-                            'action'        => 'add-background-job-console',
+                            'controller'    => 'gearman',
+                            'action'        => 'run-worker-console',
                         ],
                     ],
                 ],

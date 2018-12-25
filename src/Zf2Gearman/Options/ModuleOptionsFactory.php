@@ -8,7 +8,7 @@ class ModuleOptionsFactory implements \Zend\ServiceManager\FactoryInterface
     {
         $config = $serviceLocator->get('Config');
 
-        $options = new ModuleOptions(isset($config['gearman']) ? $config['gearman'] : []);
+        $options = new ModuleOptions(isset($config['zf2gearman']) ? $config['zf2gearman'] : []);
         
         return $options;
     }

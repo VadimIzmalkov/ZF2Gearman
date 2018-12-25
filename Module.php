@@ -23,7 +23,7 @@ class Module
     {
         return [
             'factories' => [
-                Controller\Index::class => Controller\IndexControllerFactory::class,
+                Controller\Gearman::class => Controller\GearmanControllerFactory::class,
             ],
         ];
     }
@@ -31,8 +31,12 @@ class Module
     public function getServiceConfig()
     {
         return [
+            'invokables' => [
+                Service\Logger::class               => Service\Logger::class,
+            ],
             'factories' => [
-                Service\GearmanService::class       => Service\GearmanServiceFactory::class,
+                Service\Manager::class              => Service\ManagerFactory::class,
+                Service\WorkerWrapper::class        => Service\WorkerWrapperFactory::class,
                 Options\ModuleOptions::class        => Options\ModuleOptionsFactory::class,
             ],
         ];
