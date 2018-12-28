@@ -1,5 +1,5 @@
-# TinyCRM
-Customer Relationship Management Software
+# ZF2 Gearman
+Basic integration ZF2 and Gearman queue manager
 
 ## Installation
 
@@ -114,7 +114,7 @@ class ExampleJob extends GearmanJob
 }
 ```
 
-In /config/autoload folder by creating zf2gearman.global.php and register job: 
+In /config/autoload folder create zf2gearman.global.php and register job: 
 
 ```php
 <?php 
