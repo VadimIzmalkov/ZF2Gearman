@@ -13,25 +13,6 @@ Customer Relationship Management Software
 
 ## Usage
 
-In /config/autoload folder create zf2gearman.global.php
-
-```php
-<?php 
-use TinyCRM\Service\GearmanJob;
-
-return [
-	'zf2gearman' => [
-		'jobs' => [
-			GearmanJob\ExampleJob::class => [
-                'logEnable'  	=> true,
-                'logFileName'   => 'example_job_' . date("Y-m-d_H-i-s") . '.log',
-                'errorFileName' => 'example_job_' . date("Y-m-d_H-i-s") . '.err',
-            ],
-		],
-	],
-];
-```
-
 Create your Workload with any data
 
 ```php
@@ -85,93 +66,7 @@ class GearmanWorkload implements WorkloadInterface
         $this->createdAt = new \DateTime();
     }
 
-    /**
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getJobClass()
-    {
-        return $this->jobClass;
-    }
-
-    /**
-     * @param string $jobClass
-     *
-     * @return self
-     */
-    public function setJobClass($jobClass)
-    {
-        $this->jobClass = $jobClass;
-
-        return $this;
-    }
-
-    /**
-     * @return \Zf2Gearman\Entity\WorkerState
-     */
-    public function getWorkerState()
-    {
-        return $this->workerState;
-    }
-
-    /**
-     * @param \Zf2Gearman\Entity\WorkerState $workerState
-     *
-     * @return self
-     */
-    public function setWorkerState(\Zf2Gearman\Entity\WorkerState $workerState)
-    {
-        $this->workerState = $workerState;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getData()
-    {
-        return $this->data;
-    }
-
-    /**
-     * @param string $data
-     *
-     * @return self
-     */
-    public function setData($data)
-    {
-        $this->data = $data;
-
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @param \DateTime $createdAt
-     *
-     * @return self
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
+    // setters and getters
 }
 ```
 
@@ -194,6 +89,7 @@ return array(
 ```
 
 Create Job
+
 ```php
 <?php
 namespace TinyCRM\Service\GearmanJob;
@@ -218,10 +114,29 @@ class ExampleJob extends GearmanJob
 }
 ```
 
-In Controller:
-1. Inject Zf2Gearman Manager dependency in Controller Factory:
+In /config/autoload folder by creating zf2gearman.global.php and register job: 
+
 ```php
-$gearmanManager 	= $parentLocator->get(\Zf2Gearman\Service\Manager::class);
+<?php 
+use TinyCRM\Service\GearmanJob;
+
+return [
+    'zf2gearman' => [
+        'jobs' => [
+            GearmanJob\ExampleJob::class => [
+                'logEnable'     => true,
+                'logFileName'   => 'example_job_' . date("Y-m-d_H-i-s") . '.log',
+                'errorFileName' => 'example_job_' . date("Y-m-d_H-i-s") . '.err',
+            ],
+        ],
+    ],
+];
+```
+
+In Controller:
+1. In controller factory inject Zf2Gearman Manager dependency:
+```php
+$gearmanManager = $parentLocator->get(\Zf2Gearman\Service\Manager::class);
 ```
 
 2. Add new task in Action:
